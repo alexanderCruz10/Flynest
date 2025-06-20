@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../Context/CartContext";
 import restaurantData from "../../../src/Data/Restaurant.json";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import bgvideo from '../../assets/travel1.mp4';
 import user1 from '../../assets/user-1.jpeg';
