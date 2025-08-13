@@ -1,54 +1,105 @@
-import React from "react";
-// import './ContactSection.css';
+import { toast, ToastContainer } from "react-toastify";
+import { useState } from "react";
 
 const ContactSection = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSend = () => {
+    if (
+      !form.name ||
+      !form.email ||
+      !form.phone ||
+      !form.subject ||
+      !form.message
+    ) {
+      toast.warn("Please fill in all fields!");
+      return;
+    }
+    toast.success("Message sent successfully!");
+  };
+
   return (
     <div className="contact-section main-wrapper">
+      <ToastContainer />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-7 col-lg-9">
             <div className="contact-card">
               <h4 className="contact-heading">Feel Free to Write Us Anytime</h4>
-              <form method="post" className="contact-form">
+              <form
+                method="post"
+                className="contact-form"
+                onSubmit={(e) => e.preventDefault()}
+              >
                 <div className="row g-4">
                   <div className="col-sm-6">
                     <input
                       className="form-control custom-input"
                       type="text"
+                      name="name"
                       placeholder="Enter your name"
+                      value={form.name}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="col-sm-6">
                     <input
                       className="form-control custom-input"
                       type="email"
+                      name="email"
                       placeholder="Enter your email"
+                      value={form.email}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="col-sm-6">
                     <input
                       className="form-control custom-input"
                       type="text"
+                      name="phone"
                       placeholder="Your phone"
+                      value={form.phone}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="col-sm-6">
                     <input
                       className="form-control custom-input"
                       type="text"
+                      name="subject"
                       placeholder="Select subject"
+                      value={form.subject}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="col-sm-12">
                     <textarea
                       className="form-control custom-textarea"
                       rows="5"
+                      name="message"
                       placeholder="Enter your message..."
+                      value={form.message}
+                      onChange={handleChange}
                     ></textarea>
                   </div>
                 </div>
                 <div className=" mt-4">
-                  <button type="submit" className="btn send-btn">
+                  <button
+                    type="button"
+                    className="btn send-btn"
+                    onClick={handleSend}
+                  >
                     Send Message
                   </button>
                 </div>
